@@ -1,4 +1,4 @@
-<h1 align="center">Hola 👋, Me llamo: Maximiliano Del Angel Ojeda</h1>
+<h1 align="center">Hola 👋, Me llamo: Maximiliano Del Angel</h1>
 <h3 align="center">🎓 Systems & Digital Business Engineer | 📊 Data Analyst | 🖥️ Web development</h3>
 
 - 🔭 I’m currently working on [Clever Cloud](https://www.linkedin.com/company/clever-cloud-global/posts/?feedView=all)
