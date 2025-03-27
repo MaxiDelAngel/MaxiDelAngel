@@ -5,7 +5,7 @@
 
 - 👨‍💻 All of my projects are available at [https://github.com/MaxiDelAngel/Portfolio](https://github.com/MaxiDelAngel/Portfolio)
 
-- 💬 Ask me about **VUE.JS, CSS, JAVASCRIPT , HTML Y PHP**
+- 💬 Ask me about **VUE.JS, CSS, JAVASCRIPT , HTML, PHP, KOTLIN**
 
 - 📫 How to reach me **maxdelangel13@hotmail.com**
 
