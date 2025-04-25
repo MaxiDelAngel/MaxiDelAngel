@@ -1,11 +1,11 @@
-<h1 align="center">Hola 👋, Me llamo: Maximiliano Del Angel</h1>
+<h1 align="center">Hola 👋, Me llamo Maximiliano Del Angel Ojeda</h1>
 <h3 align="center">🎓 Systems & Digital Business Engineer | 📊 Data Analyst | 🖥️ Web development | 📱 Android development</h3>
 
-- 🔭 I’m currently working on [Clever Cloud](https://www.linkedin.com/company/clever-cloud-global/posts/?feedView=all)
+- 🔭 I’m currently looking for new job opportunities where I can grow and contribute with my skills in Android development, web development and data analysis.
 
 - 👨‍💻 All of my projects are available at [https://github.com/MaxiDelAngel/Portfolio](https://github.com/MaxiDelAngel/Portfolio)
 
-- 💬 Ask me about **VUE.JS, CSS, JAVASCRIPT , HTML, PHP, KOTLIN**
+- 💬 Ask me about **VUE.JS, CSS, JAVASCRIPT , HTML, PHP, KOTLIN.**
 
 - 📫 How to reach me **maxdelangel13@hotmail.com**
 
