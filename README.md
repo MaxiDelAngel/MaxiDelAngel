@@ -1,13 +1,13 @@
 <h1 align="center">Hola mi nombre es Maximiliano Del Angel Ojeda</h1>
 <h3 align="center">🎓 Systems & Digital Business Engineer | 📊 Data Analyst | 🖥️ Web Developer | 📱 Android Developer</h3>
 
-- 🔭 I’m currently looking for new job opportunities where I can grow and contribute with my skills in Android development, web development and data analysis.
+- 🔭 Actualmente estoy buscando nuevas oportunidades de trabajo donde pueda crecer y contribuir con mis habilidades en desarrollo Android, desarrollo web y análisis de datos.
+  
+- 👨‍💻 Todos mis proyectos están disponibles en https://github.com/MaxiDelAngel/Portfolio
 
-- 👨‍💻 All of my projects are available at https://github.com/MaxiDelAngel/Portfolio
+- 💬 Pregúntame sobre VUE, CSS, JAVASCRIPT , HTML, PHP, KOTLIN, JAVA, PYTHON.
 
-- 💬 Ask me about VUE, CSS, JAVASCRIPT , HTML, PHP, KOTLIN, JAVA, PYTHON.
-
-- 📫 How to reach me maxdelangel13@hotmail.com
+- 📫 Contáctame: maxdelangel13@hotmail.com
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
