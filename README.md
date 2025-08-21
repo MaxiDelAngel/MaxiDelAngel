@@ -5,7 +5,7 @@
   
 - 👨‍💻 Todos mis proyectos están disponibles en https://github.com/MaxiDelAngel/Portfolio
 
-- 💬 Pregúntame sobre VUE, CSS, JAVASCRIPT , HTML, PHP, KOTLIN, JAVA, PYTHON.
+- 💬 Pregúntame sobre VUE, CSS, JAVASCRIPT, HTML, PHP, KOTLIN, SWIFT, KMP, JAVA, PYTHON.
 
 - 📫 Contáctame: maxdelangel13@hotmail.com
 
