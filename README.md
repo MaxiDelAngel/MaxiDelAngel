@@ -1,5 +1,5 @@
 <h1 align="center">Hola mi nombre es Maximiliano Del Angel Ojeda</h1>
-<h3 align="center">🎓 Systems & Digital Business Engineer | 📊 Data Analyst | 🖥️ Web Developer | 📱 Android Developer</h3>
+<h3 align="center">🎓 Systems & Digital Business Engineer | 📱 Mobile App Developer (Android & iOS) | 🖥 Full Stack Web Developer | 📊 Data Analys</h3> 
 
 - 🔭 Actualmente estoy buscando nuevas oportunidades de trabajo donde pueda crecer y contribuir con mis habilidades en desarrollo Android, desarrollo web y análisis de datos.
   
