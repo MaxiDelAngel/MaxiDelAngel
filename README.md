@@ -1,7 +1,7 @@
 <h1 align="center">Hola mi nombre es Maximiliano Del Angel Ojeda</h1>
 <h3 align="center">🎓 Systems & Digital Business Engineer | 📱 Mobile App Developer (Android & iOS) | 🖥 Full Stack Web Developer | 📊 Data Analyst</h3> 
 
-- 🔭 Actualmente estoy buscando nuevas oportunidades de trabajo donde pueda crecer y contribuir con mis habilidades en desarrollo Android, desarrollo web y análisis de datos.
+- 🔭 Actualmente estoy buscando nuevas oportunidades de trabajo donde pueda crecer y contribuir con mis habilidades en desarrollo Android, iOS, multiplataforma, desarrollo web y análisis de datos.
   
 - 👨‍💻 Todos mis proyectos están disponibles en https://github.com/MaxiDelAngel/Portfolio
 
