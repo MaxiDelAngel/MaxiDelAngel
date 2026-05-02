@@ -1,10 +1,10 @@
 <h1 align="center">Hola, mi nombre es Maximiliano Del Angel Ojeda</h1>
 
 <h3 align="center">
-🎓 Systems & Digital Business Engineer |
-📱 Mobile App Developer (Android & iOS) |
-🖥 Full Stack Web Developer |
-📊 Data Analyst
+React Developer | 
+📱 Web & Mobile | 
+📊 Data Analyst | 
+🧩 Systems & Digital Business Engineer
 </h3>
 
 ---
