@@ -1,6 +1,12 @@
 <h1 align="center">Engineer Maximiliano Del Angel Ojeda</h1>
 <h3 align="center">React Developer | 📱 Web & Mobile | 📊 Data Analyst | 🧩 Systems & Digital Business Engineer</h3>
 
+- 🚀 Passionate about developing modern web and mobile applications focused on performance, scalability, and user experience. **asdasdas**
+
+- 📱 Currently working with React, React Native, TypeScript, and Python to develop full stack and cross-platform solutions. **sada**
+
+- 📫 How to reach me maxdelangel13@hotmail.com **sadsad**
+
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <a href="https://linkedin.com/in/https://www.linkedin.com/in/maximilianodelangelojeda/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="https://www.linkedin.com/in/maximilianodelangelojeda/" height="30" width="40" /></a>
