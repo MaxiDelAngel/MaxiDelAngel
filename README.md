@@ -11,7 +11,7 @@
 ## 👋 About me
 
 - 🧩 Full Stack Developer focused on **web & mobile products** — from idea to shipped feature.
-- 🛠️ Daily stack: **TypeScript, JavaScript, React, React Native/Expo, Node.js, Python, PostgreSQL/Supabase**.
+- 🛠️ Daily stack: **TypeScript, JavaScript, React, React Native/Expo, Node.js, Python, PostgreSQL/Supabase, MySQL, AWS**.
 - 🤖 I enjoy integrating **AI/LLM features** into real products — automation, contextual responses, smart workflows.
 - 🎯 Product-minded: I like being involved not just in building, but in *how* things should work and how to improve them.
 - 🚀 Always looking to build things others think can't be done yet.
