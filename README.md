@@ -57,12 +57,12 @@
 
 <div align="center">
 
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=TU_USUARIO&show_icons=true&theme=tokyonight&hide_border=true&count_private=true"/>
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=TU_USUARIO&layout=compact&theme=tokyonight&hide_border=true"/>
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=MaxiDelAngel&show_icons=true&theme=tokyonight&hide_border=true&count_private=true"/>
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MaxiDelAngel&layout=compact&theme=tokyonight&hide_border=true"/>
 
 <br>
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=TU_USUARIO&theme=tokyonight&hide_border=true" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=MaxiDelAngel&theme=tokyonight&hide_border=true" />
 
 </div>
 
@@ -72,7 +72,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/TU_USUARIO/TU_USUARIO/output/github-contribution-grid-snake-dark.svg" alt="snake animation" />
+<img src="https://raw.githubusercontent.com/MaxiDelAngel/MaxiDelAngel/output/github-contribution-grid-snake-dark.svg" alt="snake animation" />
 
 </div>
 
