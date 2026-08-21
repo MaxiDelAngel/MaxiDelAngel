@@ -205,7 +205,7 @@ async function main() {
       lines: [
         { text: "guest@github:~$ echo $STATUS", color: BLUE },
         { text: "Want to make your project a reality?", color: AMBER },
-        { text: "Contact me ->", color: AMBER },
+        { text: "Contact me -> maxdelangel13@hotmail.com", color: AMBER },
       ],
     },
   ];
