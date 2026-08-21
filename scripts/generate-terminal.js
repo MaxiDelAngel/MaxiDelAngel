@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // scripts/generate-terminal.js
-// Genera un SVG tipo terminal "hacker" con stats reales de GitHub, con efecto
-// de tipeo animado (SMIL, sin JS — así lo puede renderizar GitHub).
+// Genera un SVG tipo terminal "hacker" con stats reales de GitHub.
+// Cicla en loop infinito entre varias "pantallas" (SMIL puro, sin JS,
+// para que GitHub lo pueda renderizar como <img>).
 
 import fs from "node:fs";
 
@@ -36,7 +37,6 @@ async function fetchStats() {
     },
     body: JSON.stringify({ query, variables: { login: USERNAME } }),
   });
-
   const json = await res.json();
   if (json.errors) throw new Error(JSON.stringify(json.errors));
   return json.data.user;
@@ -48,65 +48,131 @@ function topLanguage(repos) {
     const lang = r.primaryLanguage?.name;
     if (lang) counts[lang] = (counts[lang] || 0) + 1;
   }
-  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-  return sorted[0]?.[0] ?? "N/A";
+  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "N/A";
 }
 
 function escapeXml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-function buildSvg(lines) {
-  const charWidth = 8.4;
-  const fontSize = 14;
-  const lineHeight = 22;
-  const padding = 20;
-  const startY = 50;
-  const perCharDelay = 0.045;
-  const linePause = 0.25;
+// --- Config de tiempos (segundos) ---
+const CHAR_DELAY = 0.045; // velocidad de tipeo por caracter
+const LINE_GAP = 0.15; // pausa entre lineas dentro de una pantalla
+const SCREEN_HOLD = 1.8; // cuanto se queda la pantalla ya escrita, antes de limpiarse
+const SCREEN_GAP = 0.4; // pausa en negro antes de que empiece la siguiente pantalla
+const INITIAL_DELAY = 0.3;
+const CUT_EPS = 0.05; // duracion del "corte" instantaneo al limpiar pantalla
+const CHAR_WIDTH = 8.4;
+const FONT_SIZE = 14;
+const LINE_HEIGHT = 22;
+const PADDING = 20;
+const START_Y = 50;
 
+// convierte una lista de puntos [segundosAbsolutos, valor] a keyTimes/values
+// normalizados sobre la duracion total T, garantizando orden estrictamente creciente.
+function timeline(points, T) {
+  const minGap = 0.0006;
+  let lastFrac = -1;
+  const out = [];
+  for (const [t, v] of points) {
+    let f = Math.max(0, Math.min(1, t / T));
+    if (f <= lastFrac) f = Math.min(1, lastFrac + minGap);
+    out.push([f, v]);
+    lastFrac = f;
+  }
+  return {
+    keyTimes: out.map((p) => p[0].toFixed(4)).join(";"),
+    values: out.map((p) => p[1]).join(";"),
+  };
+}
+
+function buildLoopedTerminal(screens) {
+  // 1) calcular timing absoluto de cada pantalla y cada linea
+  let cursor = INITIAL_DELAY;
+  const laidOut = screens.map((screen) => {
+    const screenStart = cursor;
+    let lineCursor = 0;
+    const lines = screen.lines.map((line) => {
+      const dur = Math.max(line.text.length * CHAR_DELAY, 0.15);
+      const startAbs = screenStart + lineCursor;
+      const endAbs = startAbs + dur;
+      lineCursor += dur + LINE_GAP;
+      return { ...line, startAbs, endAbs };
+    });
+    const typingEnd = screenStart + lineCursor - LINE_GAP;
+    const screenEnd = typingEnd + SCREEN_HOLD;
+    cursor = screenEnd + SCREEN_GAP;
+    return { lines, screenStart, screenEnd, typingEnd };
+  });
+  const T = cursor;
+
+  const maxLines = Math.max(...screens.map((s) => s.lines.length));
   const width = 560;
-  const height = startY + lines.length * lineHeight + padding;
+  const height = START_Y + maxLines * LINE_HEIGHT + PADDING;
 
-  let t = 0.3; // pequeño delay inicial
-  const lineSvgs = lines.map((line, i) => {
-    const y = startY + i * lineHeight;
-    const textWidth = Math.max(line.length * charWidth, 1);
-    const dur = Math.max(line.length * perCharDelay, 0.2);
-    const begin = t;
-    t += dur + linePause;
+  const groups = laidOut.map((screen, gi) => {
+    const opac = timeline(
+      [
+        [0, 0],
+        [Math.max(0, screen.screenStart - CUT_EPS), 0],
+        [screen.screenStart, 1],
+        [screen.screenEnd, 1],
+        [screen.screenEnd + CUT_EPS, 0],
+        [T, 0],
+      ],
+      T
+    );
 
-    const isPrompt = line.startsWith("guest@");
-    const color = isPrompt ? "#58a6ff" : "#39d353";
-    const clipId = `clip-${i}`;
+    const textEls = screen.lines.map((line, li) => {
+      const y = START_Y + li * LINE_HEIGHT;
+      const w = Math.max(line.text.length * CHAR_WIDTH, 1);
+      const wl = timeline(
+        [
+          [0, 0],
+          [line.startAbs, 0],
+          [line.endAbs, w],
+          [screen.screenEnd, w],
+          [screen.screenEnd + CUT_EPS, 0],
+          [T, 0],
+        ],
+        T
+      );
+      const clipId = `clip-${gi}-${li}`;
+      return `
+      <clipPath id="${clipId}">
+        <rect x="${PADDING}" y="${y - FONT_SIZE}" width="0" height="${FONT_SIZE + 6}">
+          <animate attributeName="width" keyTimes="${wl.keyTimes}" values="${wl.values}" dur="${T.toFixed(3)}s" begin="0s" repeatCount="indefinite" />
+        </rect>
+      </clipPath>
+      <text x="${PADDING}" y="${y}" font-family="'Fira Code', Consolas, monospace" font-size="${FONT_SIZE}" fill="${line.color}" clip-path="url(#${clipId})">${escapeXml(line.text)}</text>`;
+    });
+
+    const last = screen.lines[screen.lines.length - 1];
+    const lastY = START_Y + (screen.lines.length - 1) * LINE_HEIGHT;
+    const cursorX = PADDING + last.text.length * CHAR_WIDTH + 3;
 
     return `
-    <clipPath id="${clipId}">
-      <rect x="${padding}" y="${y - fontSize}" width="0" height="${fontSize + 6}">
-        <animate attributeName="width" from="0" to="${textWidth}" begin="${begin}s" dur="${dur}s" fill="freeze" />
+    <g opacity="0">
+      <animate attributeName="opacity" keyTimes="${opac.keyTimes}" values="${opac.values}" dur="${T.toFixed(3)}s" begin="0s" repeatCount="indefinite" />
+      ${textEls.join("\n")}
+      <rect x="${cursorX}" y="${lastY - FONT_SIZE}" width="8" height="${FONT_SIZE + 4}" fill="#39d353">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" begin="${screen.typingEnd.toFixed(3)}s" repeatCount="indefinite" />
       </rect>
-    </clipPath>
-    <text x="${padding}" y="${y}" font-family="'Fira Code', Consolas, monospace" font-size="${fontSize}" fill="${color}" clip-path="url(#${clipId})">${escapeXml(line)}</text>`;
+    </g>`;
   });
-
-  const lastLine = lines[lines.length - 1];
-  const lastY = startY + (lines.length - 1) * lineHeight;
-  const cursorX = padding + lastLine.length * charWidth + 3;
 
   return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" rx="10" fill="#0d1117" />
   <circle cx="22" cy="20" r="6" fill="#ff5f56" />
   <circle cx="42" cy="20" r="6" fill="#ffbd2e" />
   <circle cx="62" cy="20" r="6" fill="#27c93f" />
-  ${lineSvgs.join("\n")}
-  <rect x="${cursorX}" y="${lastY - fontSize}" width="8" height="${fontSize + 4}" fill="#39d353">
-    <animate attributeName="opacity" values="1;0;1" dur="1s" begin="${t}s" repeatCount="indefinite" />
-  </rect>
+  ${groups.join("\n")}
 </svg>`;
 }
+
+const BLUE = "#58a6ff"; // prompts
+const GREEN = "#39d353"; // output normal
+const AMBER = "#e3b341"; // CTA
 
 async function main() {
   const user = await fetchStats();
@@ -115,18 +181,36 @@ async function main() {
   const contributions = user.contributionsCollection.contributionCalendar.totalContributions;
   const year = new Date().getFullYear();
 
-  const lines = [
-    "guest@github:~$ whoami",
-    USERNAME,
-    "guest@github:~$ neofetch --stats",
-    `Repos         : ${user.repositories.totalCount}`,
-    `Stars         : ${totalStars}`,
-    `Top Lang      : ${topLanguage(repos)}`,
-    `Commits ${year} : ${contributions}`,
-    "guest@github:~$ _",
+  const screens = [
+    {
+      lines: [
+        { text: "guest@github:~$ whoami", color: BLUE },
+        { text: USERNAME, color: GREEN },
+        { text: "guest@github:~$ cat stats.txt", color: BLUE },
+        { text: `Repos    : ${user.repositories.totalCount}`, color: GREEN },
+        { text: `Stars    : ${totalStars}`, color: GREEN },
+        { text: `Top Lang : ${topLanguage(repos)}`, color: GREEN },
+        { text: `Commits ${year} : ${contributions}`, color: GREEN },
+      ],
+    },
+    {
+      lines: [
+        { text: "guest@github:~$ cat currently.txt", color: BLUE },
+        { text: "> Building web & mobile products", color: GREEN },
+        { text: "> React / React Native / Node.js", color: GREEN },
+        { text: "> Shipping AI-powered features", color: GREEN },
+      ],
+    },
+    {
+      lines: [
+        { text: "guest@github:~$ echo $STATUS", color: BLUE },
+        { text: "Want to make your project a reality?", color: AMBER },
+        { text: "Contact me ->", color: AMBER },
+      ],
+    },
   ];
 
-  const svg = buildSvg(lines);
+  const svg = buildLoopedTerminal(screens);
   fs.mkdirSync("assets", { recursive: true });
   fs.writeFileSync("assets/terminal.svg", svg);
   console.log("SVG generado en assets/terminal.svg");
