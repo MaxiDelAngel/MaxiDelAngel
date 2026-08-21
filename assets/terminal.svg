@@ -1,0 +1,65 @@
+<svg width="560" height="246" viewBox="0 0 560 246" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" rx="10" fill="#0d1117" />
+  <circle cx="22" cy="20" r="6" fill="#ff5f56" />
+  <circle cx="42" cy="20" r="6" fill="#ffbd2e" />
+  <circle cx="62" cy="20" r="6" fill="#27c93f" />
+  
+    <clipPath id="clip-0">
+      <rect x="20" y="36" width="0" height="20">
+        <animate attributeName="width" from="0" to="184.8" begin="0.3s" dur="0.99s" fill="freeze" />
+      </rect>
+    </clipPath>
+    <text x="20" y="50" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#58a6ff" clip-path="url(#clip-0)">guest@github:~$ whoami</text>
+
+    <clipPath id="clip-1">
+      <rect x="20" y="58" width="0" height="20">
+        <animate attributeName="width" from="0" to="100.80000000000001" begin="1.54s" dur="0.54s" fill="freeze" />
+      </rect>
+    </clipPath>
+    <text x="20" y="72" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#39d353" clip-path="url(#clip-1)">MaxiDelAngel</text>
+
+    <clipPath id="clip-2">
+      <rect x="20" y="80" width="0" height="20">
+        <animate attributeName="width" from="0" to="268.8" begin="2.33s" dur="1.44s" fill="freeze" />
+      </rect>
+    </clipPath>
+    <text x="20" y="94" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#58a6ff" clip-path="url(#clip-2)">guest@github:~$ neofetch --stats</text>
+
+    <clipPath id="clip-3">
+      <rect x="20" y="102" width="0" height="20">
+        <animate attributeName="width" from="0" to="151.20000000000002" begin="4.02s" dur="0.8099999999999999s" fill="freeze" />
+      </rect>
+    </clipPath>
+    <text x="20" y="116" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#39d353" clip-path="url(#clip-3)">Repos         : 43</text>
+
+    <clipPath id="clip-4">
+      <rect x="20" y="124" width="0" height="20">
+        <animate attributeName="width" from="0" to="142.8" begin="5.08s" dur="0.765s" fill="freeze" />
+      </rect>
+    </clipPath>
+    <text x="20" y="138" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#39d353" clip-path="url(#clip-4)">Stars         : 3</text>
+
+    <clipPath id="clip-5">
+      <rect x="20" y="146" width="0" height="20">
+        <animate attributeName="width" from="0" to="184.8" begin="6.095000000000001s" dur="0.99s" fill="freeze" />
+      </rect>
+    </clipPath>
+    <text x="20" y="160" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#39d353" clip-path="url(#clip-5)">Top Lang      : Kotlin</text>
+
+    <clipPath id="clip-6">
+      <rect x="20" y="168" width="0" height="20">
+        <animate attributeName="width" from="0" to="151.20000000000002" begin="7.335000000000001s" dur="0.8099999999999999s" fill="freeze" />
+      </rect>
+    </clipPath>
+    <text x="20" y="182" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#39d353" clip-path="url(#clip-6)">Commits 2026 : 236</text>
+
+    <clipPath id="clip-7">
+      <rect x="20" y="190" width="0" height="20">
+        <animate attributeName="width" from="0" to="142.8" begin="8.395000000000001s" dur="0.765s" fill="freeze" />
+      </rect>
+    </clipPath>
+    <text x="20" y="204" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#58a6ff" clip-path="url(#clip-7)">guest@github:~$ _</text>
+  <rect x="165.8" y="190" width="8" height="18" fill="#39d353">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" begin="9.410000000000002s" repeatCount="indefinite" />
+  </rect>
+</svg>
