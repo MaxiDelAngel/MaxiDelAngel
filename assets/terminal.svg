@@ -128,7 +128,7 @@
           <animate attributeName="width" keyTimes="0.0000;0.8794;0.9047;0.9827;0.9848;1.0000" values="0;0;109.2;109.2;0;0" dur="23.085s" begin="0s" repeatCount="indefinite" />
         </rect>
       </clipPath>
-      <text x="20" y="94" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#e3b341" filter="url(#glow)" clip-path="url(#clip-2-2)">Contact me -&gt;</text>
+      <text x="20" y="94" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#e3b341" filter="url(#glow)" clip-path="url(#clip-2-2)">Contact me :)</text>
       <rect x="132.2" y="80" width="8" height="18" fill="#39d353">
         <animate attributeName="opacity" values="1;0;1" dur="1s" begin="20.885s" repeatCount="indefinite" />
       </rect>
