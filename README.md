@@ -76,11 +76,11 @@
 
 <br>
 
-## 🐍 Contribution Snake
+## 💻 Terminal
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/MaxiDelAngel/MaxiDelAngel/output/github-contribution-grid-snake-dark.svg" alt="snake animation" />
+<img src="https://raw.githubusercontent.com/MaxiDelAngel/MaxiDelAngel/main/assets/terminal.svg" alt="terminal stats" />
 
 </div>
 
