@@ -86,7 +86,7 @@ function timeline(points, T) {
   };
 }
 
-function buildLoopedTerminal(screens) {
+function buildLoopedTerminal(screens, username) {
   // 1) calcular timing absoluto de cada pantalla y cada linea
   let cursor = INITIAL_DELAY;
   const laidOut = screens.map((screen) => {
@@ -144,7 +144,7 @@ function buildLoopedTerminal(screens) {
           <animate attributeName="width" keyTimes="${wl.keyTimes}" values="${wl.values}" dur="${T.toFixed(3)}s" begin="0s" repeatCount="indefinite" />
         </rect>
       </clipPath>
-      <text x="${PADDING}" y="${y}" font-family="'Fira Code', Consolas, monospace" font-size="${FONT_SIZE}" fill="${line.color}" clip-path="url(#${clipId})">${escapeXml(line.text)}</text>`;
+      <text x="${PADDING}" y="${y}" font-family="'Fira Code', Consolas, monospace" font-size="${FONT_SIZE}" fill="${line.color}" filter="url(#glow)" clip-path="url(#${clipId})">${escapeXml(line.text)}</text>`;
     });
 
     const last = screen.lines[screen.lines.length - 1];
@@ -162,10 +162,21 @@ function buildLoopedTerminal(screens) {
   });
 
   return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0.6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
   <rect width="100%" height="100%" rx="10" fill="#0d1117" />
+  <rect width="100%" height="100%" rx="10" fill="none" stroke="#30363d" stroke-width="1" />
   <circle cx="22" cy="20" r="6" fill="#ff5f56" />
   <circle cx="42" cy="20" r="6" fill="#ffbd2e" />
   <circle cx="62" cy="20" r="6" fill="#27c93f" />
+  <text x="${width / 2}" y="24" font-family="'Fira Code', Consolas, monospace" font-size="12" fill="#8b949e" text-anchor="middle">${escapeXml(username)}@github: ~</text>
   ${groups.join("\n")}
 </svg>`;
 }
@@ -184,9 +195,9 @@ async function main() {
   const screens = [
     {
       lines: [
-        { text: "guest@github:~$ whoami", color: BLUE },
+        { text: "mdao@github:~$ whoami", color: BLUE },
         { text: USERNAME, color: GREEN },
-        { text: "guest@github:~$ cat stats.txt", color: BLUE },
+        { text: "mdao@github:~$ cat stats.txt", color: BLUE },
         { text: `Repos    : ${user.repositories.totalCount}`, color: GREEN },
         { text: `Stars    : ${totalStars}`, color: GREEN },
         { text: `Top Lang : ${topLanguage(repos)}`, color: GREEN },
@@ -195,7 +206,7 @@ async function main() {
     },
     {
       lines: [
-        { text: "guest@github:~$ cat currently.txt", color: BLUE },
+        { text: "mdao@github:~$ cat currently.txt", color: BLUE },
         { text: "> Building web & mobile products", color: GREEN },
         { text: "> React / React Native / Node.js", color: GREEN },
         { text: "> Shipping AI-powered features", color: GREEN },
@@ -203,14 +214,14 @@ async function main() {
     },
     {
       lines: [
-        { text: "guest@github:~$ echo $STATUS", color: BLUE },
+        { text: "mdao@github:~$ echo $STATUS", color: BLUE },
         { text: "Want to make your project a reality?", color: AMBER },
-        { text: "Contact me -> maxdelangel13@hotmail.com", color: AMBER },
+        { text: "Contact me ->", color: AMBER },
       ],
     },
   ];
 
-  const svg = buildLoopedTerminal(screens);
+  const svg = buildLoopedTerminal(screens, USERNAME);
   fs.mkdirSync("assets", { recursive: true });
   fs.writeFileSync("assets/terminal.svg", svg);
   console.log("SVG generado en assets/terminal.svg");
