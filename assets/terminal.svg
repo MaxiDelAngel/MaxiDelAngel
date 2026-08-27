@@ -44,7 +44,7 @@
           <animate attributeName="width" keyTimes="0.0000;0.1514;0.1767;0.3658;0.3680;1.0000" values="0;0;109.2;109.2;0;0" dur="23.085s" begin="0s" repeatCount="indefinite" />
         </rect>
       </clipPath>
-      <text x="20" y="116" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#39d353" filter="url(#glow)" clip-path="url(#clip-0-3)">Repos    : 45</text>
+      <text x="20" y="116" font-family="'Fira Code', Consolas, monospace" font-size="14" fill="#39d353" filter="url(#glow)" clip-path="url(#clip-0-3)">Repos    : 44</text>
 
       <clipPath id="clip-0-4">
         <rect x="20" y="124" width="0" height="20">
